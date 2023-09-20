@@ -129,10 +129,11 @@ def ais_to_cot_xml(
 
     country: str = aisfunc.get_mid(mmsi)
     if country:
-        cot_type = "a-n" + cot_type[3:]
+        if not known_craft.get("COT"):
+            cot_type = "a-n" + cot_type[3:]
         remarks_fields.append(f"Country: {country}")
         aiscotx.set("country", country)
-        if "United States of America" in country:
+        if "United States of America" in country and not known_craft.get("COT"):
             cot_type = "a-f" + cot_type[3:]
 
     if vessel_type:
