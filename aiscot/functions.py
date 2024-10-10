@@ -97,10 +97,10 @@ def ais_to_cot_xml(
     # N.B. SectionProxy does not support dict's "fallback" parameter, you have to
     #      use explicit conditionals ('or'), like so:
     cot_type: str = str(
-        config.get("COT_TYPE") or known_craft.get("COT") or aiscot.DEFAULT_COT_TYPE)
+        known_craft.get("COT") or config.get("COT_TYPE") or aiscot.DEFAULT_COT_TYPE)
 
     cot_stale: int = int(
-        config.get("COT_STALE") or known_craft.get("STALE") or aiscot.DEFAULT_COT_STALE)
+        known_craft.get("STALE") or config.get("COT_STALE") or aiscot.DEFAULT_COT_STALE)
 
     cot_host_id: str = str(config.get("COT_HOST_ID") or "")
 
